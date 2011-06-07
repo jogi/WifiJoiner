@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+	<string name="hello">Hello World, ScanActivity!</string>
+	<string name="app_name">WifiJoiner</string>
+
+	<string name="button_ok">OK</string>
+	<string name="contents_text">Plain text</string>
+	<string name="msg_encode_barcode_failed">Could not generate the requested barcode.</string>
+	<string name="msg_encode_contents_failed">Could not encode a barcode from the data provided.
+	</string>
+
+
+	<string name="msg_default_format">Format</string>
+	<string name="msg_default_type">Type</string>
+	<string name="msg_default_time">Time</string>
+	<string name="msg_default_meta">Metadata</string>
+	<string name="msg_default_status">Place a qrcode inside the viewfinder rectangle to	scan it.</string>
+	<string name="msg_camera_framework_bug">Sorry, the Android camera encountered a problem. You may need to restart the device.</string>
+	<string name="msg_unmount_usb">Sorry, the SD card is not accessible.</string>
+
+	<string name="button_google_shopper">Google Shopper</string>
+
+	<string name="menu_share">Share</string>
+	<string name="menu_create">Create</string>
+
+	<string name="preferences_actions_title">When a barcode is found\u2026</string>
+	<string name="preferences_bulk_mode_summary">Scan and save many barcodes continuously</string>
+	<string name="preferences_bulk_mode_title">Bulk scan mode</string>
+	<string name="preferences_copy_to_clipboard_title">Copy to clipboard</string>
+	<string name="preferences_custom_product_search_summary">Use %s as a placeholder for the product ID, and for
+		format</string>
+	<string name="preferences_custom_product_search_title">Custom search URL</string>
+	<string name="preferences_decode_1D_title">Decode 1D barcodes</string>
+	<string name="preferences_decode_Data_Matrix_title">Decode Data Matrix</string>
+	<string name="preferences_decode_QR_title">Decode QR Codes</string>
+	<string name="preferences_front_light_summary">Improves scanning in low light on some phones, but
+		may cause glare. Does not work on all phones.</string>
+	<string name="preferences_front_light_title">Use front light</string>
+	<string name="preferences_general_title">General settings</string>
+	<string name="preferences_name">Settings</string>
+	<string name="preferences_play_beep_title">Beep</string>
+	<string name="preferences_result_title">Result settings</string>
+	<string name="preferences_scanning_title">When scanning for barcodes\u2026</string>
+	<string name="preferences_vibrate_title">Vibrate</string>
+	
+	<string name="msg_create_ssid">SSID</string>
+	
+	<string name="msg_create_security">Security</string>
+	
+	<string name="msg_create_secret">Secret</string>
+	
+	<string name="msg_existing_spinner">...Or select a configured network</string>
+	
+	<string name="msg_create_qrcode">Create QR Code</string>
+
+</resources>
