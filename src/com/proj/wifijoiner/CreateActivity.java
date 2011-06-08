@@ -14,12 +14,14 @@ import android.net.wifi.WifiManager;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.text.method.PasswordTransformationMethod;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemSelectedListener;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.Toast;
@@ -44,6 +46,7 @@ public class CreateActivity extends Activity implements TextWatcher {
  	private Spinner typeSpinner;
  	private Spinner existingSpinner;
  	private Button buttonCreate;
+ 	private CheckBox checkShowPassword;
 	
 	void showToast(CharSequence msg) {
         Toast.makeText(this, msg, Toast.LENGTH_SHORT).show();
@@ -107,6 +110,18 @@ public class CreateActivity extends Activity implements TextWatcher {
                     }
                 });
         
+        checkShowPassword = (CheckBox) findViewById(R.id.secret_check_box);
+        checkShowPassword.setOnClickListener(new OnClickListener() {
+            public void onClick(View v) {
+                // Perform action on clicks, depending on whether it's now checked
+                if (((CheckBox) v).isChecked()) {
+                    textSecret.setTransformationMethod(null);
+                } else {
+                    textSecret.setTransformationMethod(new PasswordTransformationMethod());
+                }
+            }
+        });
+        
         buttonCreate.setOnClickListener(new OnClickListener() {
 
 			@Override
@@ -145,7 +160,7 @@ public class CreateActivity extends Activity implements TextWatcher {
 			if (selectedConfig.allowedKeyManagement.get(WifiConfiguration.KeyMgmt.WPA_PSK))
 			{
 				textSSID.setText(removeDoubleQuotes(selectedConfig.SSID));
-			    typeSpinner.setSelection(1, true);
+			    typeSpinner.setSelection(1, true);			    
 			    validate();
 			}
 			//Open

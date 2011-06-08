@@ -108,7 +108,7 @@ public final class ConnectButtonListener implements Button.OnClickListener {
 			// success, can call wfMgr.enableNetwork(networkId, true) to
 			// connect
 			System.out.println("Successfully joined!");
-			wfMgr.enableNetwork(networkId, false);			
+			boolean success = wfMgr.enableNetwork(networkId, true);			
 			
 			new AlertDialog.Builder(context)	        
 	        .setTitle("New network has been configured! Do you want to exit?")

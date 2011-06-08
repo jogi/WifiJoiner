@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 	<string name="hello">Hello World, ScanActivity!</string>
-	<string name="app_name">WifiJoiner</string>
+	<string name="app_name">Wifi Joiner</string>
 
 	<string name="button_ok">OK</string>
 	<string name="contents_text">Plain text</string>
@@ -49,8 +49,11 @@
 	
 	<string name="msg_create_secret">Secret</string>
 	
-	<string name="msg_existing_spinner">...Or select a configured network</string>
+	<string name="msg_existing_spinner">Select a configured network</string>
+	<string name="msg_new_network">...Or create a new one</string>
 	
 	<string name="msg_create_qrcode">Create QR Code</string>
+	
+	<string name="msg_secret_check">Show Password</string>
 
 </resources>

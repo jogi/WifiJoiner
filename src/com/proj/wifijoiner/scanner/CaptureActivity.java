@@ -26,6 +26,7 @@ import java.util.Vector;
 
 import android.app.Activity;
 import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.res.AssetFileDescriptor;
@@ -58,6 +59,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.google.gson.Gson;
+import com.google.gson.JsonParseException;
 import com.google.zxing.BarcodeFormat;
 import com.google.zxing.Result;
 import com.google.zxing.ResultMetadataType;
@@ -401,27 +403,51 @@ public final class CaptureActivity extends Activity implements SurfaceHolder.Cal
 	    }
 
 	    TextView contentsTextView = (TextView) findViewById(R.id.contents_text_view);
-	    WifiRecord wifiRec = (WifiRecord) new Gson().fromJson(rawResult.toString(),	WifiRecord.class);
+	    WifiRecord wifiRec = null;
+	    
+	    try {
+			wifiRec = (WifiRecord) new Gson().fromJson(rawResult.toString(),	WifiRecord.class);
+			
+			Log.i(TAG, wifiRec.toString());
+		    
+		    CharSequence displayContents = "Network details:\nSSID\t\t\t: " + wifiRec.getSsid() +
+											"\nSecurity\t: "+wifiRec.getSecurity() +
+											"\nSecret\t\t: "+wifiRec.getSecret();
+		    
+		    contentsTextView.setText(displayContents);
+		    // Crudely scale betweeen 22 and 32 -- bigger font for shorter text
+		    int scaledSize = Math.max(22, 32 - displayContents.length() / 4);
+		    contentsTextView.setTextSize(TypedValue.COMPLEX_UNIT_SP, scaledSize);
 
-		Log.i(TAG, wifiRec.toString());
-	    
-	    CharSequence displayContents = "Network details:\nSSID\t\t\t: " + wifiRec.getSsid() +
-										"\nSecurity\t: "+wifiRec.getSecurity() +
-										"\nSecret\t\t: "+wifiRec.getSecret();
-	    
-	    contentsTextView.setText(displayContents);
-	    // Crudely scale betweeen 22 and 32 -- bigger font for shorter text
-	    int scaledSize = Math.max(22, 32 - displayContents.length() / 4);
-	    contentsTextView.setTextSize(TypedValue.COMPLEX_UNIT_SP, scaledSize);
+		    int buttonCount = 0;
+		    ViewGroup buttonView = (ViewGroup) findViewById(R.id.result_button_view);
+		    buttonView.requestFocus();
+		    TextView button = (TextView) buttonView.getChildAt(buttonCount);
+		    
+	        button.setVisibility(View.VISIBLE);
+	        button.setText("Connect to network");
+	    	button.setOnClickListener(new ConnectButtonListener(this, wifiRec));
+	    	
+		} catch (JsonParseException e) {
+			new AlertDialog.Builder(this)	        
+	        .setTitle("Invalid Wifi QR Code scanned. Please try a different one.")
+	        .setPositiveButton("Try Again", new DialogInterface.OnClickListener() {
+	            public void onClick(DialogInterface dialog, int whichButton) {
 
-	    int buttonCount = 0;
-	    ViewGroup buttonView = (ViewGroup) findViewById(R.id.result_button_view);
-	    buttonView.requestFocus();
-	    TextView button = (TextView) buttonView.getChildAt(buttonCount);
-	    
-        button.setVisibility(View.VISIBLE);
-        button.setText("Connect to network");
-    	button.setOnClickListener(new ConnectButtonListener(this, wifiRec));    	
+	                /* User clicked OK so do some stuff */
+	            	finish();
+	            	
+	            	Intent intent = new Intent(getApplicationContext(), CaptureActivity.class);	            	
+	    		    intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_WHEN_TASK_RESET);
+	    		    intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+	    		    
+	    		    startActivity(intent);
+	            }
+	        })	        
+	        .create().show();
+		}
+
+		    	
 	 }
   
   
