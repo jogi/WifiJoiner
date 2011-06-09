@@ -7,51 +7,59 @@
 	OR CONDITIONS OF ANY KIND, either express or implied. See the License for 
 	the specific language governing permissions and limitations under the License. -->
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+	xmlns:ads="http://schemas.android.com/apk/lib/com.google.ads"
 	android:id="@+id/create" android:layout_height="fill_parent"
 	android:layout_width="fill_parent" android:orientation="vertical">
+	<com.google.ads.AdView android:id="@+id/adView"
+				android:layout_width="wrap_content" android:layout_height="wrap_content"
+				ads:adUnitId="@string/ad_unit_id" ads:adSize="BANNER"
+				ads:loadAdOnCreate="true" />
 	<ScrollView android:layout_height="wrap_content" android:id="@+id/scrollView1"
 		android:layout_width="fill_parent">
-		<LinearLayout android:padding="10dip" android:id="@+id/linearLayout1"
-			android:layout_height="fill_parent" android:orientation="vertical"
-			android:layout_width="fill_parent">
-			<TextView android:text="@string/msg_existing_spinner"
-				android:textStyle="bold" android:layout_width="wrap_content"
-				android:id="@+id/existing_spinner_label" android:paddingRight="4dip"
-				android:textColor="@color/black" android:layout_height="wrap_content"
-				android:textSize="14sp"></TextView>
-			<Spinner android:id="@+id/existing_spinner"
-				android:layout_height="wrap_content" android:layout_width="fill_parent"></Spinner>
-			<TextView android:textStyle="bold" android:layout_width="wrap_content"
-				android:paddingRight="4dip" android:textColor="@color/black"
+		<LinearLayout android:layout_width="fill_parent"
+			android:paddingLeft="10dip" android:paddingRight="10dip"
+			android:orientation="vertical" android:id="@+id/linearLayout1"
+			android:layout_height="fill_parent">			
+			<TextView android:textColor="@color/black"
+				android:layout_width="wrap_content" android:text="@string/msg_existing_spinner"
+				android:paddingRight="4dip" android:textStyle="bold"
 				android:layout_height="wrap_content" android:textSize="14sp"
-				android:id="@+id/new_network_label" android:text="@string/msg_new_network"></TextView>
-			<TextView android:text="@string/msg_create_ssid"
-				android:textStyle="bold" android:layout_width="wrap_content"
-				android:id="@+id/ssid_text_view_label" android:paddingRight="4dip"
-				android:textColor="@color/black" android:layout_height="wrap_content"
-				android:textSize="14sp"></TextView>
+				android:id="@+id/existing_spinner_label"></TextView>
+			<Spinner android:layout_height="wrap_content"
+				android:layout_width="fill_parent" android:id="@+id/existing_spinner"></Spinner>
+			<TextView android:textColor="@color/black"
+				android:layout_width="wrap_content" android:text="@string/msg_new_network"
+				android:paddingRight="4dip" android:textStyle="bold"
+				android:layout_height="wrap_content" android:textSize="14sp"
+				android:id="@+id/new_network_label"></TextView>
+			<TextView android:textColor="@color/black"
+				android:layout_width="wrap_content" android:text="@string/msg_create_ssid"
+				android:paddingRight="4dip" android:textStyle="bold"
+				android:layout_height="wrap_content" android:textSize="14sp"
+				android:id="@+id/ssid_text_view_label"></TextView>
 			<EditText android:layout_width="fill_parent" android:id="@+id/ssid_text_view"
 				android:text="EditText" android:layout_height="wrap_content"></EditText>
-			<TextView android:text="@string/msg_create_security"
-				android:textStyle="bold" android:layout_width="wrap_content"
-				android:id="@+id/type_spinner_label" android:paddingRight="4dip"
-				android:textColor="@color/black" android:layout_height="wrap_content"
-				android:textSize="14sp"></TextView>
-			<Spinner android:id="@+id/type_spinner"
-				android:layout_height="wrap_content" android:layout_width="fill_parent"></Spinner>
-			<TextView android:text="@string/msg_create_secret"
-				android:textStyle="bold" android:layout_width="wrap_content"
-				android:id="@+id/secret_text_view_label" android:paddingRight="4dip"
-				android:textColor="@color/black" android:layout_height="wrap_content"
-				android:textSize="14sp"></TextView>
-			<EditText android:layout_width="fill_parent"
-				android:password="true" android:id="@+id/secret_text_view"
-				android:text="EditText" android:layout_height="wrap_content"></EditText>
-			<CheckBox android:layout_width="wrap_content" android:id="@+id/secret_check_box"
-				android:layout_height="wrap_content" android:text="@string/msg_secret_check"></CheckBox>
-			<Button android:text="@string/msg_create_qrcode"
-				android:paddingTop="8dip" android:layout_width="fill_parent"
-				android:layout_height="wrap_content" android:id="@+id/create_button"></Button>
+			<TextView android:textColor="@color/black"
+				android:layout_width="wrap_content" android:text="@string/msg_create_security"
+				android:paddingRight="4dip" android:textStyle="bold"
+				android:layout_height="wrap_content" android:textSize="14sp"
+				android:id="@+id/type_spinner_label"></TextView>
+			<Spinner android:layout_height="wrap_content"
+				android:layout_width="fill_parent" android:id="@+id/type_spinner"></Spinner>
+			<TextView android:textColor="@color/black"
+				android:layout_width="wrap_content" android:text="@string/msg_create_secret"
+				android:paddingRight="4dip" android:textStyle="bold"
+				android:layout_height="wrap_content" android:textSize="14sp"
+				android:id="@+id/secret_text_view_label"></TextView>
+			<EditText android:password="true" android:layout_width="fill_parent"
+				android:id="@+id/secret_text_view" android:text="EditText"
+				android:layout_height="wrap_content"></EditText>
+			<CheckBox android:id="@+id/secret_check_box"
+				android:layout_width="wrap_content" android:text="@string/msg_secret_check"
+				android:layout_height="wrap_content"></CheckBox>
+			<Button android:layout_width="fill_parent" android:text="@string/msg_create_qrcode"
+				android:layout_height="wrap_content" android:id="@+id/create_button"
+				android:paddingTop="8dip"></Button>
 		</LinearLayout>
 	</ScrollView>
 

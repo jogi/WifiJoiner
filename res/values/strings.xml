@@ -2,6 +2,7 @@
 <resources>
 	<string name="hello">Hello World, ScanActivity!</string>
 	<string name="app_name">Wifi Joiner</string>
+	<string name="ad_unit_id">a14def2c49a261b</string>
 
 	<string name="button_ok">OK</string>
 	<string name="contents_text">Plain text</string>

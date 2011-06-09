@@ -5,5 +5,6 @@
 	<classpathentry kind="con" path="com.android.ide.eclipse.adt.ANDROID_FRAMEWORK"/>
 	<classpathentry kind="lib" path="lib/zxing-core.jar"/>
 	<classpathentry kind="lib" path="lib/gson-1.5.jar"/>
+	<classpathentry kind="lib" path="E:/Academics/Projects/Android/GoogleAdMobAdsSdkAndroid-4.1.0/GoogleAdMobAdsSdk-4.1.0.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

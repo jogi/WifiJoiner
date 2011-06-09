@@ -23,9 +23,13 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.Spinner;
 import android.widget.Toast;
 
+import com.google.ads.AdRequest;
+import com.google.ads.AdSize;
+import com.google.ads.AdView;
 import com.google.gson.Gson;
 import com.google.zxing.BarcodeFormat;
 import com.proj.wifijoiner.qr.Contents;
@@ -56,6 +60,11 @@ public class CreateActivity extends Activity implements TextWatcher {
 	public void onCreate(Bundle icicle) {
 		super.onCreate(icicle);
 		setContentView(R.layout.create);
+		
+		//Ads
+		// Look up the AdView as a resource and load a request.
+	    AdView adView = (AdView)this.findViewById(R.id.adView);
+	    adView.loadAd(new AdRequest());
 		
 		textSSID = (EditText) findViewById(R.id.ssid_text_view);
 		textSSID.addTextChangedListener(this);

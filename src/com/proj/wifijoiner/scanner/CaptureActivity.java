@@ -412,7 +412,7 @@ public final class CaptureActivity extends Activity implements SurfaceHolder.Cal
 		    
 		    CharSequence displayContents = "Network details:\nSSID\t\t\t: " + wifiRec.getSsid() +
 											"\nSecurity\t: "+wifiRec.getSecurity() +
-											"\nSecret\t\t: "+wifiRec.getSecret();
+											"\nSecret\t\t: ***********";
 		    
 		    contentsTextView.setText(displayContents);
 		    // Crudely scale betweeen 22 and 32 -- bigger font for shorter text
