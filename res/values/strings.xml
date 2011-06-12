@@ -56,5 +56,7 @@
 	<string name="msg_create_qrcode">Create QR Code</string>
 	
 	<string name="msg_secret_check">Show Password</string>
+	
+	<string name="msg_encrypt_text">Encrypt Password?</string>
 
 </resources>

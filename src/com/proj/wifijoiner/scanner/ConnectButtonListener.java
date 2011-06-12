@@ -8,13 +8,14 @@ import java.util.List;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.net.wifi.ScanResult;
 import android.net.wifi.WifiConfiguration;
 import android.net.wifi.WifiManager;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 
-import com.proj.wifijoiner.R;
+import com.proj.wifijoiner.Caesar;
 import com.proj.wifijoiner.WifiRecord;
 
 /**
@@ -35,9 +36,17 @@ public final class ConnectButtonListener implements Button.OnClickListener {
 	public void onClick(View view) {
 		Log.d(TAG, "onClick() Addnetwork()");
 
+		Log.i(TAG, record.toString());
+		
 		String ssid = record.getSsid();
 		String password = record.getSecret();
 		String type = record.getSecurity();
+		boolean encrypted = record.isEncrypted();
+		
+		//if the password is encrypted then decrypt it
+		if(encrypted) {
+			password = new Caesar().decrypt(password);
+		}
 
 		WifiConfiguration wfc = new WifiConfiguration();
 
@@ -107,8 +116,10 @@ public final class ConnectButtonListener implements Button.OnClickListener {
 		if (networkId != -1) {
 			// success, can call wfMgr.enableNetwork(networkId, true) to
 			// connect
-			System.out.println("Successfully joined!");
-			boolean success = wfMgr.enableNetwork(networkId, true);			
+			if(isNetworkInRange(wfc.SSID))
+				wfMgr.enableNetwork(networkId, true);
+			else
+				wfMgr.enableNetwork(networkId, false);
 			
 			new AlertDialog.Builder(context)	        
 	        .setTitle("New network has been configured! Do you want to exit?")
@@ -129,12 +140,23 @@ public final class ConnectButtonListener implements Button.OnClickListener {
 	   * @param ssid
 	   */
 	  private WifiConfiguration findNetworkInExistingConfig(String ssid){
-	    List<WifiConfiguration> existingConfigs = wfMgr.getConfiguredNetworks();
+	    List<WifiConfiguration> existingConfigs = wfMgr.getConfiguredNetworks();	    
 	    for (WifiConfiguration existingConfig : existingConfigs) {
 	      if (existingConfig.SSID.equals(ssid)) {
 	        return existingConfig;
 	      }
 	    }
 	    return null;
+	  }
+	  
+	  private boolean isNetworkInRange(String ssid) {
+		  List<ScanResult> networks = wfMgr.getScanResults();
+		  
+		  for(ScanResult result : networks) {
+			  if (result.SSID.equals(ssid))
+				  return true;
+		  }
+		  
+		  return false;
 	  }
 }

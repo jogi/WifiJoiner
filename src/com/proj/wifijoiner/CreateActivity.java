@@ -23,12 +23,10 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
-import android.widget.LinearLayout;
 import android.widget.Spinner;
 import android.widget.Toast;
 
 import com.google.ads.AdRequest;
-import com.google.ads.AdSize;
 import com.google.ads.AdView;
 import com.google.gson.Gson;
 import com.google.zxing.BarcodeFormat;
@@ -51,6 +49,7 @@ public class CreateActivity extends Activity implements TextWatcher {
  	private Spinner existingSpinner;
  	private Button buttonCreate;
  	private CheckBox checkShowPassword;
+ 	private CheckBox checkEncryptPassword;
 	
 	void showToast(CharSequence msg) {
         Toast.makeText(this, msg, Toast.LENGTH_SHORT).show();
@@ -63,8 +62,10 @@ public class CreateActivity extends Activity implements TextWatcher {
 		
 		//Ads
 		// Look up the AdView as a resource and load a request.
-	    AdView adView = (AdView)this.findViewById(R.id.adView);
-	    adView.loadAd(new AdRequest());
+	    AdView adView = (AdView)this.findViewById(R.id.adViewCreate);
+	    AdRequest adRequest = new AdRequest();
+	    adRequest.addTestDevice("A11BD1FCFF91EE90EA6051FE63883C01");
+	    adView.loadAd(adRequest);
 		
 		textSSID = (EditText) findViewById(R.id.ssid_text_view);
 		textSSID.addTextChangedListener(this);
@@ -131,6 +132,8 @@ public class CreateActivity extends Activity implements TextWatcher {
             }
         });
         
+        checkEncryptPassword = (CheckBox) findViewById(R.id.encrypt_check_box);        
+        
         buttonCreate.setOnClickListener(new OnClickListener() {
 
 			@Override
@@ -138,7 +141,12 @@ public class CreateActivity extends Activity implements TextWatcher {
 				WifiRecord record = new WifiRecord();
 				record.setSsid(textSSID.getText().toString());
 				record.setSecurity(typeSpinner.getSelectedItem().toString());
-				record.setSecret(textSecret.getText().toString());
+				record.setEncrypted(checkEncryptPassword.isChecked());
+				
+				if(checkEncryptPassword.isChecked())
+					record.setSecret(new Caesar().encrypt(textSecret.getText().toString()));
+				else
+					record.setSecret(textSecret.getText().toString());
 				
 				Intent intent = new Intent(Intents.Encode.ACTION);
 			    intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_WHEN_TASK_RESET);

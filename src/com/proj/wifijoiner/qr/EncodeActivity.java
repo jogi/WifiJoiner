@@ -38,6 +38,8 @@ import android.view.ViewTreeObserver.OnGlobalLayoutListener;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.google.ads.AdRequest;
+import com.google.ads.AdView;
 import com.google.gson.Gson;
 import com.google.zxing.BarcodeFormat;
 import com.google.zxing.WriterException;
@@ -109,7 +111,7 @@ public class EncodeActivity extends Activity {
 
 				info.setText("Network details:\nSSID\t: " + wifiRec.getSsid() +
 						"\nSecurity\t: "+wifiRec.getSecurity() +
-						"\nSecret\t: "+wifiRec.getSecret());
+						"\nSecret\t: *********");
 
 				// qrCodeEncoder = null;
 				break;
@@ -131,7 +133,13 @@ public class EncodeActivity extends Activity {
 			if (action.equals(Intents.Encode.ACTION)
 					|| action.equals(Intent.ACTION_SEND)) {
 				setContentView(R.layout.encode);
-
+				//Ads
+				// Look up the AdView as a resource and load a request.
+			    AdView adView = (AdView)this.findViewById(R.id.adViewEncode);
+			    AdRequest adRequest = new AdRequest();
+			    adRequest.addTestDevice("A11BD1FCFF91EE90EA6051FE63883C01");
+			    adView.loadAd(adRequest);
+			    
 				qrCodeView = (ImageView) findViewById(R.id.image_view);
 				info = (TextView) findViewById(R.id.txtEncodeInfo);
 
@@ -160,8 +168,7 @@ public class EncodeActivity extends Activity {
 		Bitmap bitmap;
 		try {
 			bitmap = QRCodeEncoder.encodeAsBitmap(contents,
-					BarcodeFormat.QR_CODE, SHARE_BARCODE_DIMENSION,
-					SHARE_BARCODE_DIMENSION);
+					BarcodeFormat.QR_CODE, SHARE_BARCODE_DIMENSION,	SHARE_BARCODE_DIMENSION);
 		} catch (WriterException we) {
 			Log.w(TAG, we);
 			return true;

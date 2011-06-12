@@ -12,6 +12,7 @@ public class WifiRecord {
 	private String ssid;
 	private String secret;
 	private String security;
+	private boolean encrypted = false;
 	/**
 	 * @return the ssid
 	 */
@@ -48,12 +49,26 @@ public class WifiRecord {
 	public void setSecurity(String security) {
 		this.security = security;
 	}
+	
+	/**
+	 * @return the encrypted
+	 */
+	public boolean isEncrypted() {
+		return encrypted;
+	}
+	/**
+	 * @param encrypted the encrypted to set
+	 */
+	public void setEncrypted(boolean encrypted) {
+		this.encrypted = encrypted;
+	}
+	
 	/* (non-Javadoc)
 	 * @see java.lang.Object#toString()
 	 */
 	@Override
 	public String toString() {
 		return "WifiRecord [ssid=" + ssid + ", secret=" + secret
-				+ ", security=" + security + "]";
+				+ ", security=" + security + ", encrypted=" + encrypted +"]";
 	}
 }

@@ -10,7 +10,7 @@
 	xmlns:ads="http://schemas.android.com/apk/lib/com.google.ads"
 	android:id="@+id/create" android:layout_height="fill_parent"
 	android:layout_width="fill_parent" android:orientation="vertical">
-	<com.google.ads.AdView android:id="@+id/adView"
+	<com.google.ads.AdView android:id="@+id/adViewCreate"
 				android:layout_width="wrap_content" android:layout_height="wrap_content"
 				ads:adUnitId="@string/ad_unit_id" ads:adSize="BANNER"
 				ads:loadAdOnCreate="true" />
@@ -57,6 +57,7 @@
 			<CheckBox android:id="@+id/secret_check_box"
 				android:layout_width="wrap_content" android:text="@string/msg_secret_check"
 				android:layout_height="wrap_content"></CheckBox>
+			<CheckBox android:layout_height="wrap_content" android:layout_width="wrap_content" android:id="@+id/encrypt_check_box" android:text="@string/msg_encrypt_text" android:checked="true"></CheckBox>
 			<Button android:layout_width="fill_parent" android:text="@string/msg_create_qrcode"
 				android:layout_height="wrap_content" android:id="@+id/create_button"
 				android:paddingTop="8dip"></Button>
