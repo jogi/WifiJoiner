@@ -116,10 +116,7 @@ public final class ConnectButtonListener implements Button.OnClickListener {
 		if (networkId != -1) {
 			// success, can call wfMgr.enableNetwork(networkId, true) to
 			// connect
-			if(isNetworkInRange(wfc.SSID))
-				wfMgr.enableNetwork(networkId, true);
-			else
-				wfMgr.enableNetwork(networkId, false);
+			wfMgr.enableNetwork(networkId, true);
 			
 			new AlertDialog.Builder(context)	        
 	        .setTitle("New network has been configured! Do you want to exit?")

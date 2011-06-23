@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-	package="com.proj.wifijoiner" android:versionCode="3"
-	android:versionName="1.2">
-	<uses-sdk android:minSdkVersion="3" />
+	package="com.proj.wifijoiner" android:versionCode="4"
+	android:versionName="1.2.1">
+	<uses-sdk android:minSdkVersion="4" />
 
 	<!-- Donut-specific flags which allow us to run on any dpi screens. -->
 	<supports-screens android:largeScreens="true"

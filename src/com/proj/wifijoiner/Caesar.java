@@ -5,8 +5,8 @@ package com.proj.wifijoiner;
  * Modified Caesar Encryption service
  */
 public class Caesar {
-	private final static int key = 0; // (en|de)cryption key	
-	private final String s = "HAHA, ITS A SECRET!";
+	private final static int key = 23; // (en|de)cryption key	
+	private final String s = "abklm78efghvi{VZU[Jn}c12@#]$3?4rs|tu56:90;wxG.HO,yRW<XYd>jopqz~!%IDBC^&EFQL*()_+=-`ASTMNPK";
 	
 	// (en|de)crypt: just feed in opposite parameters
 	public String encrypt(String text) {
